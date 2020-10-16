@@ -47,7 +47,7 @@
             "top": 291,
             "state": {
                 "conditionExpression": {
-                    "expression": "{{ Activities.CreateUser.User.Email == \"user1@mail.com\" }}",
+                    "expression": "{{ CreateUser.User.Email == \"user1@mail.com\" }}",
                     "syntax": "Liquid"
                 },
                 "name": "",
