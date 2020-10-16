@@ -1,0 +1,8 @@
+// Click Send Requst below:
+POST http://localhost:5006/users/register
+content-type: application/json
+
+{
+  "name": "user1",
+  "email": "user1@mail.com"
+}

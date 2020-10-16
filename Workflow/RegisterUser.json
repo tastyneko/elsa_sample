@@ -1,0 +1,97 @@
+{
+    "activities": [
+        {
+            "id": "dba61b1f-7fb5-4e3d-b6a7-0777a35ac408",
+            "type": "Signaled",
+            "left": 50,
+            "top": 28,
+            "state": {
+                "signal": {
+                    "expression": "RegisterUser",
+                    "syntax": "Literal"
+                },
+                "name": "RegisterUser",
+                "title": "Register User",
+                "description": "Trigger the workflow when this signal is received."
+            },
+            "blocking": false,
+            "executed": false,
+            "faulted": false
+        },
+        {
+            "id": "c9794311-e4ca-4303-b321-251454356bf3",
+            "type": "CreateUser",
+            "left": 412,
+            "top": 32,
+            "state": {
+                "userName": {
+                    "expression": "{{ Input.RegistrationModel.Name }}",
+                    "syntax": "Liquid"
+                },
+                "email": {
+                    "expression": "{{ Input.RegistrationModel.Email }}",
+                    "syntax": "Liquid"
+                },
+                "name": "CreateUser",
+                "title": "",
+                "description": ""
+            },
+            "blocking": false,
+            "executed": false,
+            "faulted": false
+        },
+        {
+            "id": "1b2d36a3-a7a0-4b89-98b9-d77b8425e4b5",
+            "type": "IfElse",
+            "left": 707,
+            "top": 291,
+            "state": {
+                "conditionExpression": {
+                    "expression": "{{ Activities.CreateUser.User.Email == \"user1@mail.com\" }}",
+                    "syntax": "Liquid"
+                },
+                "name": "",
+                "title": "",
+                "description": "Check for email"
+            },
+            "blocking": false,
+            "executed": false,
+            "faulted": false
+        },
+        {
+            "id": "0eaf5398-814b-49c7-b5eb-633fb6b0391d",
+            "type": "WriteLine",
+            "left": 633,
+            "top": 32,
+            "state": {
+                "textExpression": {
+                    "expression": "{{ Activities.CreateUser.User.Email }}",
+                    "syntax": "Liquid"
+                },
+                "name": "",
+                "title": "",
+                "description": ""
+            },
+            "blocking": false,
+            "executed": false,
+            "faulted": false
+        }
+    ],
+    "connections": [
+        {
+            "sourceActivityId": "dba61b1f-7fb5-4e3d-b6a7-0777a35ac408",
+            "destinationActivityId": "c9794311-e4ca-4303-b321-251454356bf3",
+            "outcome": "Done"
+        },
+        {
+            "sourceActivityId": "c9794311-e4ca-4303-b321-251454356bf3",
+            "destinationActivityId": "0eaf5398-814b-49c7-b5eb-633fb6b0391d",
+            "outcome": "Done"
+        },
+        {
+            "sourceActivityId": "0eaf5398-814b-49c7-b5eb-633fb6b0391d",
+            "destinationActivityId": "1b2d36a3-a7a0-4b89-98b9-d77b8425e4b5",
+            "outcome": "Done"
+        }
+    ]
+}
